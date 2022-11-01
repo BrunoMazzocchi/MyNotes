@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'dart:developer' as devtools show log;
+import 'package:free_code_camp/constants/routes.dart';
+import '../utilities/log_out_dialog.dart';
 
 
 
@@ -30,7 +31,7 @@ class _NotesViewState extends State<NotesView> {
                   final shouldLogout = await showLogOutDialog(context);
                   if(shouldLogout != null){
                     await FirebaseAuth.instance.signOut();
-                    Navigator.of(context).pushNamedAndRemoveUntil('/login/',
+                    Navigator.of(context).pushNamedAndRemoveUntil(loginRoute,
                             (_) => false);
                   }
               }
@@ -48,25 +49,4 @@ class _NotesViewState extends State<NotesView> {
   }
 }
 
-Future<bool?> showLogOutDialog(BuildContext context) {
-  return showDialog<bool>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Sign out'),
-          content: const Text('Are you sure you want to sign out?'),
-          actions: [
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(false);
-                },
-                child: const Text('Cancel')),
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                },
-                child: const Text('Log out')),
-          ],
-        );
-      });
-}
+
