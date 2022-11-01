@@ -66,9 +66,14 @@ class _RegisterViewState extends State<RegisterView> {
                 final password = _password.text;
 
                 try {
-                  final userCredential = await FirebaseAuth.instance
+                  await FirebaseAuth.instance
                       .createUserWithEmailAndPassword(
                           email: email, password: password);
+
+                  final user = FirebaseAuth.instance.currentUser;
+                  user?.sendEmailVerification();
+
+                  Navigator.of(context).pushNamed(verifyEmailRoute);
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'weak-password') {
                     await showErrorDialog(
@@ -105,4 +110,3 @@ class _RegisterViewState extends State<RegisterView> {
         ));
   }
 }
-

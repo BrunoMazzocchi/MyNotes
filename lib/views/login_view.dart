@@ -79,7 +79,7 @@ class _LoginViewState extends State<LoginView> {
                       context,
                       'User not found',
                     );
-                  } else if (e.code == 'wrong-password!') {
+                  } else if (e.code == 'wrong-password') {
                     await showErrorDialog(
                       context,
                       'Wrong password',
