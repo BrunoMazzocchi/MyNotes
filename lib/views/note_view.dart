@@ -3,10 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:free_code_camp/constants/routes.dart';
 import '../utilities/log_out_dialog.dart';
-
-
-
-enum MenuAction { logut }
+import '../enums/menu_action.dart' show MenuAction;
 
 class NotesView extends StatefulWidget {
   const NotesView({Key? key}) : super(key: key);
